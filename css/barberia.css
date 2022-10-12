@@ -27,6 +27,11 @@
 .img-redes a{
     width: 50%;
 }
+.img-redes a img{
+    width: 80%;
+    height: 80%;
+}
+/*
 .img-instagram{
     width: 40px;
     height: 40px;
@@ -36,7 +41,7 @@
     width: 40px;
     height: 40px;
 }
-
+*/
 .menu{
     width: 100%;
     background-color: black;
