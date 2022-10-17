@@ -1,45 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/barberia.css">
     <link rel="icon" href="img/iconoBarberia.ico">
+    <script src="js/datos.js"></script>
     <script src="js/index.js"></script>
     <title>TURNOS</title>
 </head>
+
 <body>
     <header>
         <nav class="menu">
             <ul class="lista-navegacion" id="idUlNav">
-                <a class="item" href="index.html"><li >INICIO</li></a>
-                <a class="item" href="servicios.html"><li >SERVICIOS</li></a>
-                <a class="item" href="turnos.html"><li >TURNOS</li></a>
+                <a class="item" href="index.html">
+                    <li>INICIO</li>
+                </a>
+                <a class="item" href="servicios.html">
+                    <li>SERVICIOS</li>
+                </a>
+                <a class="item" href="turnos.html">
+                    <li>TURNOS</li>
+                </a>
             </ul>
         </nav>
         <div class="cabecera" id="idDivCabecera">
             <img src="img/iconoMenu.png" alt="Icono Menu" class="imagenBotonMenu" id="idBtn-menu">
             <img class="logo-img" src="img/logobarberia2.png" alt="">
             <div class="img-redes">
-                <a href="https://instagram.com/nicolastonanes?igshid=YmMyMTA2M2Y=">
-                    <img src="img/iconoInstagram.png" alt="Icono Instagram">
-                </a>
-                <a href="#">
-                    <img src="img/iconoFacebook.png" alt="Icono Facebook">
-                </a>
+                <a href="https://instagram.com/nicolastonanes?igshid=YmMyMTA2M2Y="><img class="img-instagram"
+                        src="img/iconoInstagram.png" alt="Icono Instagram"></a>
+                <a href="#"><img class="img-facebook" src="img/iconoFacebook.png" alt="Icono Facebook"></a>
             </div>
         </div>
     </header>
+    <main>
+        <article>
+            <header>
+                <h1 class="cabeceraBodyH1">RESERVA DE TURNO</h1>
+            </header>
+            <form action="" id="idFormulario">
+                <section class="sectionFormulario">
+                    <div>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="idInputNombre" name="nombre" value="" required>
+                    </div>
 
+                    <div>
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="idInputApellido" name="apellido" value="" required>
+                    </div>
+                    
+                    <div>
+                        <h4>Teléfono</h4>
+                        <div>
+                            <label for="codigo">Cod. de Área</label>
+                            <input type="text" id="idCodigoArea" name="codigo" value="" required placeholder="Sin el 0"
+                                class="inputCodigoArea">
+                        </div>
+
+                        <div>
+                            <label for="numero">Número</label>
+                            <input type="text" id="idNumeroTelefono" name="numero" value="" required
+                                placeholder="Sin el 15">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="fecha">Seleccione el dia</label>
+                        <input type="date" name="fecha" id="idFechaTurno">
+                    </div>
+                </section>
+
+                <section>
+                    <!--TABLA--> 
+                    <table>
+                        <thead id="idTheadTabla">
+                            <tr class="filaTabla">
+                                <td>Barbero</td>
+                                <td>Fecha</td>
+                                <td>Hora</td>
+                                <td>Nombre</td>
+                                <td>Apellido</td>
+                                <td>Telefono</td>
+                            </tr>
+                        </thead>
+                        <tbody id="idTbodyTabla">
+                             
+                        </tbody>
+                    </table>
+                </section>
+            </form>
+        </article>
+    </main>
     <footer>
         <div class="contacto-footer">
             <p class="p-footer">©Copyright Nicolas Toñanes Barber Shop</p>
             <p class="p-footer">Direccion: Av. 10 3739</p>
-            <a href="mailto:barberia@gmail.com"><p class="p-footer">Mail: barberia@gmail.com</p></a>
-            <a href="tel:+2262-605086"><p class="p-footer">Telefono: 2262-605086</p></a> 
-            
+            <a href="mailto:barberia@gmail.com">
+                <p class="p-footer">Mail: barberia@gmail.com</p>
+            </a>
+            <a href="tel:+2262-605086">
+                <p class="p-footer">Telefono: 2262-605086</p>
+            </a>
+
         </div>
     </footer>
 </body>
+
 </html>
