@@ -252,4 +252,71 @@ footer{
     font-size: 1em;
 }
 
+.bordesTabla, .bordesTabla thead tr td, .bordesTabla tbody tr td{
+    border: 1px solid black;
+}
+
+.bordesTabla tbody tr td.seleccionada{
+    background-color: aqua;
+}
+.bordesTabla thead tr td{
+    font-weight: 900;
+}
+
+.celdaReservada{
+    background-color: #555;
+}
+.celdaDisponible{
+    background-color: darkkhaki;
+}
+#idFormulario{
+    display: none;
+}
+
+#idFormulario.desplegar{
+    display: block;
+}
+
+/*CAPTCHA y RESUMEN DEL TURNO*/
+
+.captcha{
+    margin: 5% auto auto;
+    width: 70%;
+}
+
+
+.textoCaptcha{
+    text-align: center;
+    font-size: 2em;
+    font-family: fantasy;
+    letter-spacing: 0.3em;
+    text-shadow: 0.2em 0.2em 0.1em black, 0.12em 0.3em 0.2em rgb(252, 15, 200), 0.09em 0.25em 1em rgb(186, 250, 11);
+}
+
+/*DIV del Inpunt que ingresa el captcha*/
+.ingresaCaptcha{ 
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divInfoTurno{
+    border-top: 5%;
+    border: 1px solid black;
+    margin: 5% auto auto;
+   
+}
+
+.listaReservaTurno{
+    list-style: none;
+}
+.elementoListaReserva{
+    padding-right: 5%;
+}
+li.elementoListaReserva:hover{
+    border: none;
+}
 /*FIN BODY TURNOS*/

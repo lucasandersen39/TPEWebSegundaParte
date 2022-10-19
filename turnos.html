@@ -42,18 +42,60 @@
             <header>
                 <h1 class="cabeceraBodyH1">RESERVA DE TURNO</h1>
             </header>
+            <article>
+                <section>
+                <div>
+                    <label for="fecha">Seleccione el dia</label>
+                    <input type="date" name="fecha" id="idFechaTurno">
+                </div>
+                <section>
+                    <select name="barbero" id="idSelectBarbero" required>
+                        <option value="vacio">Seleccione Barbero</option>
+                        <option value="Nicolas">Nicolas</option>
+                        <option value="Ernesto">Ernesto</option>
+                        <option value="Pedro">Pedro</option>
+                    </select>
+                </section>
+                <section>
+                    <select name="horarioTurno" id="idSelectHora" required>
+                        <option value="vacio">Seleccione hora</option>
+                        <option value="10">10 Hs</option>
+                        <option value="11">11 Hs</option>
+                        <option value="12">12 Hs</option>
+                        <option value="13">13 Hs</option>
+                        <option value="14">14 Hs</option>
+                        <option value="15">15 Hs</option>
+                        <option value="16">16 Hs</option>
+                        <option value="17">17 Hs</option>
+                        <option value="18">18 Hs</option>
+                    </select>
+                </section>
+
+                <input type="button" value="Buscar Turno" id="idBotonFiltro">
+            </section>
+                <section>
+                    <!--TABLA-->
+                    <table class="bordesTabla">
+                        <thead id="idTheadTabla">
+                            
+                        </thead>
+                        <tbody id="idTbodyTabla">
+
+                        </tbody>
+                    </table>
+                </section>
+            </article>
+
             <form action="" id="idFormulario">
                 <section class="sectionFormulario">
                     <div>
                         <label for="nombre">Nombre</label>
                         <input type="text" id="idInputNombre" name="nombre" value="" required>
                     </div>
-
                     <div>
                         <label for="apellido">Apellido</label>
                         <input type="text" id="idInputApellido" name="apellido" value="" required>
                     </div>
-                    
                     <div>
                         <h4>Teléfono</h4>
                         <div>
@@ -61,37 +103,29 @@
                             <input type="text" id="idCodigoArea" name="codigo" value="" required placeholder="Sin el 0"
                                 class="inputCodigoArea">
                         </div>
-
                         <div>
                             <label for="numero">Número</label>
                             <input type="text" id="idNumeroTelefono" name="numero" value="" required
                                 placeholder="Sin el 15">
                         </div>
                     </div>
-                    <div>
-                        <label for="fecha">Seleccione el dia</label>
-                        <input type="date" name="fecha" id="idFechaTurno">
+                </section>
+                <section>
+                    <div id="idDivCaptcha" class="captcha">
+                        <p id="idTextoCaptcha" class="textoCaptcha">
+                        </p>
+                    </div>
+                    <div class="ingresaCaptcha">
+                        <input type="text" name="ingresaCaptcha" id="idInputIngresaCaptcha" required
+                            placeholder="Ingrese el captcha">
                     </div>
                 </section>
+                <div class="divBotonSubmit">
+                    <input type="submit" value="Enviar" class="botonSubmit" id="idBotonReserva">
+                </div>
+                <div id="infoConfirmaTurno">
 
-                <section>
-                    <!--TABLA--> 
-                    <table>
-                        <thead id="idTheadTabla">
-                            <tr class="filaTabla">
-                                <td>Barbero</td>
-                                <td>Fecha</td>
-                                <td>Hora</td>
-                                <td>Nombre</td>
-                                <td>Apellido</td>
-                                <td>Telefono</td>
-                            </tr>
-                        </thead>
-                        <tbody id="idTbodyTabla">
-                             
-                        </tbody>
-                    </table>
-                </section>
+                </div>
             </form>
         </article>
     </main>
