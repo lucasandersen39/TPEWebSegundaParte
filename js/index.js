@@ -39,25 +39,44 @@ document.addEventListener("DOMContentLoaded", function () {
     porFecha.value = fechaActual();
     cargarTurnos(buscarPorFecha(listaTurnos, porFecha.value), barberos);
 
-    let btnFiltro = document.querySelector("#idBotonFiltro");
-    btnFiltro.addEventListener("click", function () {
+    let inputFecha=document.querySelector("#idFechaTurno");
+    inputFecha.addEventListener("change",buscarTurnos);
+    let inputBarbero=document.querySelector("#idSelectBarbero");
+    inputBarbero.addEventListener("change",buscarTurnos);
+    let inputSuc=document.querySelector("#idSelectSucursal");
+    inputSuc.addEventListener("change",buscarTurnos);
+
+    function buscarTurnos(){
         let selBarbero = document.querySelector("#idSelectBarbero");
-        let selHora = document.querySelector("#idSelectHora");
+        let selSuc = document.querySelector("#idSelectSucursal");
         let arrAux;
-        let listBarberos = barberos;
+        let listBarberos = [...barberos];
         arrAux = buscarPorFecha(listaTurnos, porFecha.value);
+        
+        if (selSuc.value != "vacio"){
+            arrAux = buscarPorSucursal(arrAux, selSuc.value,listBarberos);
+            listBarberos = buscarBarberoSucursal(listaTurnos,selSuc.value);
+        }
         if (selBarbero.value != "vacio") {
             arrAux = buscarPorBarbero(arrAux, selBarbero.value);
             listBarberos = [];
             listBarberos[0] = selBarbero.value;
         }
-        if (selHora.value != "vacio")
-            arrAux = buscarPorHora(arrAux, selHora.value);
         limpiarTHead();
         armarTHead(listBarberos);
-        console.log(arrAux.length);
+        console.log("Tamaño de arrAux "+arrAux.length);
         cargarTurnos(arrAux, listBarberos);
-    });
+    }
+
+    function buscarBarberoSucursal(arreglo,sucursal){
+        let arrAux=[];
+        for (let i=0;i<arreglo.length;i++){
+            if (arreglo[i].sucursal==sucursal)
+                if (!arrAux.includes(arreglo[i].barbero))
+                        arrAux.push(arreglo[i].barbero);
+        }
+        return arrAux;
+    }
 
     let tBodyTabla = document.querySelector("#idTbodyTabla");
     tBodyTabla.addEventListener("click", (event) => {
@@ -65,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(event.target.classList.value);
         let formulario = document.querySelector("#idFormulario");
         if (event.target.classList.value == "celdaDisponible") {
+            borrarInfoTurno();
             formulario.classList.add("desplegar");
             document.querySelector("#idReservaBarbero").innerHTML = datosReserva[1];
             document.querySelector("#idReservaHora").innerHTML = datosReserva[0];
@@ -175,11 +195,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return arregloAux;
     }
 
-    function buscarPorHora(arreglo, hora) {
+    function buscarPorSucursal(arreglo, suc,listBarberos) {
         let arregloAux = [];
         for (let i = 0; i < arreglo.length; i++) {
-            if (arreglo[i].hora == hora)
+            if (arreglo[i].sucursal == suc){
                 arregloAux.push(arreglo[i]);
+                
+            }
         }
         return arregloAux;
     }
@@ -236,25 +258,25 @@ document.addEventListener("DOMContentLoaded", function () {
         lista.classList.add("listaReservaTurno");
         let elementoLista = document.createElement("li");
         elementoLista.classList.add("elementoListaReserva");
-        let info = document.createTextNode("Nombre: " + nombre.value);
+        let info = document.createTextNode("Nombre: " + nuevoTurno.cliente.nombre);
         elementoLista.appendChild(info);
         lista.appendChild(elementoLista);
 
         let elementoLista2 = document.createElement("li");
         elementoLista2.classList.add("elementoListaReserva");
-        let info2 = document.createTextNode("Apellido: " + apellido.value);
+        let info2 = document.createTextNode("Apellido: " + nuevoTurno.cliente.apellido);
         elementoLista2.appendChild(info2);
         lista.appendChild(elementoLista2);
 
         let elementoLista3 = document.createElement("li");
         elementoLista3.classList.add("elementoListaReserva");
-        let info3 = document.createTextNode("Fecha: " + fecha.value + " Hora: " + hora.value);
+        let info3 = document.createTextNode("Fecha: " + nuevoTurno.fecha + " Hora: " + nuevoTurno.hora);
         elementoLista3.appendChild(info3);
         lista.appendChild(elementoLista3);
 
         let elementoLista4 = document.createElement("li");
         elementoLista4.classList.add("elementoListaReserva");
-        let info4 = document.createTextNode("Barbero: " + barbero.value);
+        let info4 = document.createTextNode("Barbero: " + nuevoTurno.barbero);
         elementoLista4.appendChild(info4);
         lista.appendChild(elementoLista4);
 
@@ -266,36 +288,26 @@ document.addEventListener("DOMContentLoaded", function () {
         //se aplica un estilo al div que contiene la confirmacion del turno
         divInfoTurno.classList.add("divInfoTurno");
     }
+
+    function borrarInfoTurno(){
+        let divInfoTurno = document.querySelector("#infoConfirmaTurno");
+        while (divInfoTurno.firstChild)
+            divInfoTurno.removeChild(divInfoTurno.firstChild);
+    }
+
     //Imprime en la pagina un mensaje de que el captcha es incorrecto
     function errorCaptchaIngresado() {
         let divInfoTurno = document.querySelector("#infoConfirmaTurno");
         divInfoTurno.classList.add("divInfoTurno");
         divInfoTurno.innerHTML = "Captcha Incorrecto";
     }
-    //Retorna true si todos los campos requeridos estan completos
-    /*
-    function validarTodosLosCampos() {
-        let nombre = document.querySelector("#idInputNombre");
-        let apellido = document.querySelector("#idInputApellido");
-        let codigoDeArea = document.querySelector("#idCodigoArea");
-        let numeroTelefono = document.querySelector("#idNumeroTelefono");
-        let barbero = document.querySelector("#idSelectBarbero");
-        let hora = document.querySelector("#idSelectHora");
-
-        if ((nombre.value != "") && (apellido.value != "") && (codigoDeArea.value != "") &&
-            (numeroTelefono.value != "") && (barbero.value != "") && (hora.value != "") && (fecha.value != "")) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }*/
-
+    
     function cerrarForm(){
-        document.querySelector("#idInputNombre").value=" ";
-        document.querySelector("#idInputApellido").value=" ";
-        document.querySelector("#idNumeroTelefono").value=" ";
-        document.querySelector("#idInputIngresaCaptcha").value=" ";
+        document.querySelector("#idInputNombre").value="";
+        document.querySelector("#idInputApellido").value="";
+        document.querySelector("#idNumeroTelefono").value="";
+        document.querySelector("#idInputIngresaCaptcha").value="";
+        generarCaptcha();
         let formulario = document.querySelector("#idFormulario");
         formulario.classList.remove("desplegar");
     }
