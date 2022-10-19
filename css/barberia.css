@@ -232,7 +232,13 @@ footer{
 /*FIN BODY SERVICIOS*/
 
 /*INICIO BODY TURNOS*/
-
+.busquedaTurno{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.busquedaTurno section{
+    width: 70%;
+}
 .sectionFormulario{
     display: grid;
     grid-template-columns: min-content;
@@ -257,7 +263,7 @@ footer{
 }
 
 .bordesTabla tbody tr td.seleccionada{
-    background-color: aqua;
+    background-color: rgb(22, 102, 139);
 }
 .bordesTabla thead tr td{
     font-weight: 900;
@@ -271,12 +277,16 @@ footer{
 }
 #idFormulario{
     display: none;
+    border: 1px solid green;
 }
 
 #idFormulario.desplegar{
     display: block;
 }
-
+.datosNuevoTurno{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 /*CAPTCHA y RESUMEN DEL TURNO*/
 
 .captcha{

@@ -1,5 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     "uses strict"
+    let turnoJson = {
+        "barbero": "nombre",
+        "fecha": "fecha",
+        "hora": "hora",
+        "cliente": {
+            "nombre": "nombreCliente",
+            "apellido": "apellidoCliente",
+            "telefono": 000000
+        }
+    };
     let botonMenu = document.querySelector("#idBtn-menu");
     botonMenu.addEventListener("click", desplegarMenu);
     //asigno a listaBarberos la lista listaDeBarberos generada en datos.js
@@ -47,16 +57,28 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(arrAux.length);
         cargarTurnos(arrAux, listBarberos);
     });
+
     let tBodyTabla = document.querySelector("#idTbodyTabla");
     tBodyTabla.addEventListener("click", (event) => {
-        console.log(event.target.classList.toggle("seleccionada"));
-        let horid = event.target.id.split('-');
-        console.log(horid[0]);
-        console.log(horid[1]);
+        let datosReserva = event.target.id.split('-');
+        console.log(event.target.classList.value);
         let formulario = document.querySelector("#idFormulario");
-        formulario.classList.toggle("desplegar");
+        if (event.target.classList.value == "celdaDisponible") {
+            formulario.classList.add("desplegar");
+            document.querySelector("#idReservaBarbero").innerHTML = datosReserva[1];
+            document.querySelector("#idReservaHora").innerHTML = datosReserva[0];
+            document.querySelector("#idReservaFecha").innerHTML = armarFecha(porFecha.value);
+        }
+        else
+            formulario.classList.remove("desplegar");
     });
+    function limpiarEstiloCeldas() {
 
+    }
+    function armarFecha(fecha) {
+        let datos = fecha.split('-');
+        return (datos[2] + "-" + datos[1] + "-" + datos[0]);
+    }
     /*Funcion que muestra u oculta el menu en mobile*/
     function desplegarMenu() {
         let nav = document.querySelector("#idUlNav");
@@ -166,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let formulario = document.querySelector("#idFormulario");
     let fecha = document.querySelector("#idFechaTurno");
-
+    let botonExpress=document.querySelector("#idBotonExpress");
     //La funcion Math.random me genera un numero random entre 0 y 1 sin incluir el 1
     //Le sumamos 1 para incluir el numero max entre los posibles resultados al aplicarle el floor
     function numeroAleatorio(min, max) {
@@ -198,10 +220,10 @@ document.addEventListener("DOMContentLoaded", function () {
         //Añade la cadena aleatoria al <p>
         textoCaptcha.innerHTML = cadena;
     }
- 
+
     //Crea una lista de forma dinamica con los datos ingresados por el usuario
     //y lo inserta debajo del form en la pagina de turnos
-    function mostrarResumenTurno() {
+    function mostrarResumenTurno(nuevoTurno) {
         let divInfoTurno = document.querySelector("#infoConfirmaTurno");
         let nombre = document.querySelector("#idInputNombre");
         let apellido = document.querySelector("#idInputApellido");
@@ -250,6 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
         divInfoTurno.innerHTML = "Captcha Incorrecto";
     }
     //Retorna true si todos los campos requeridos estan completos
+    /*
     function validarTodosLosCampos() {
         let nombre = document.querySelector("#idInputNombre");
         let apellido = document.querySelector("#idInputApellido");
@@ -265,19 +288,58 @@ document.addEventListener("DOMContentLoaded", function () {
         else {
             return false;
         }
+    }*/
+
+    function cerrarForm(){
+        document.querySelector("#idInputNombre").value=" ";
+        document.querySelector("#idInputApellido").value=" ";
+        document.querySelector("#idNumeroTelefono").value=" ";
+        document.querySelector("#idInputIngresaCaptcha").value=" ";
+        let formulario = document.querySelector("#idFormulario");
+        formulario.classList.remove("desplegar");
     }
 
-    function agendarTurno(){
-        let nombre = document.querySelector("#idInputNombre");
-        let apellido = document.querySelector("#idInputApellido");
-        let codigoDeArea = document.querySelector("#idCodigoArea");
-        let numeroTelefono = document.querySelector("#idNumeroTelefono");
-        let barbero = document.querySelector("#idSelectBarbero");
-        let hora = document.querySelector("#idSelectHora");
-        let turnoNuevo;
-        turnoNuevo.barbero=barbero;
+    function crearTurnoJson(barb, fec, hor, nomCli, apCli, telCli) {
+        let nuevoTurno = {
+            "barbero": barb,
+            "fecha": fec,
+            "hora": hor,
+            "cliente": {
+                "nombre": nomCli,
+                "apellido": apCli,
+                "telefono": telCli,
+            }
+        };
+        return nuevoTurno;
+    }
+    function agendarTurnoExpress(){
+        let bar = document.querySelector("#idReservaBarbero").textContent;
+        let fe = armarFecha(document.querySelector("#idReservaFecha").textContent);
+        let hor = document.querySelector("#idReservaHora").textContent;
+        listaTurnos.push(crearTurnoJson(bar, fe, hor, "Sin datos", "Sin datos", 0));
+        cargarTurnos(buscarPorFecha(listaTurnos, porFecha.value), barberos);
         
+        cerrarForm();
+    }
 
+    function agendarTurno() {
+        let bar = document.querySelector("#idReservaBarbero").textContent;
+        let fe = armarFecha(document.querySelector("#idReservaFecha").textContent);
+        let hor = document.querySelector("#idReservaHora").textContent;
+        let nCli = document.querySelector("#idInputNombre").value;
+        let apCli = document.querySelector("#idInputApellido").value;
+        let tCli = parseInt(document.querySelector("#idNumeroTelefono").value);
+        let nuevoTurno=crearTurnoJson(bar, fe, hor, nCli, apCli, tCli);
+        listaTurnos.push(nuevoTurno);
+        cargarTurnos(buscarPorFecha(listaTurnos, porFecha.value), barberos);
+        mostrarResumenTurno(nuevoTurno);
+        cerrarForm();
+    }
+
+    function mostrarTurnos() {
+        for (let i = 0; i < listaTurnos.length; i++) {
+            console.log("-" + listaTurnos[i].barbero + " * " + listaTurnos[i].hora + " * " + listaTurnos[i].cliente.nombre + " * " + listaTurnos[i].cliente.telefono);
+        }
     }
     //Pregunta si todos los campos requeridos estan completos
     //Si lo estan, valida que el captcha sea correcto
@@ -289,17 +351,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //evento.preventDefault() evita que se envie el form ya que aun no tenemos destino
         evento.preventDefault();
-        if (validarTodosLosCampos())
-            if (textoCaptcha.textContent == inputIngresaCaptcha.value) {
-                mostrarResumenTurno();
-                agendarTurno();
-                //formulario.submit() se encargaria de enviar el form cuando los datos sean correctos
-                //formulario.submit();
-            }
-            else {
-                errorCaptchaIngresado();
-                generarCaptcha();
-            }
+        // if (validarTodosLosCampos())
+        if (textoCaptcha.textContent == inputIngresaCaptcha.value) {
+            
+            agendarTurno();
+            //formulario.submit() se encargaria de enviar el form cuando los datos sean correctos
+            //formulario.submit();
+        }
+        else {
+            errorCaptchaIngresado();
+            generarCaptcha();
+        }
     }
     //carga el captcha al cargarse la pagina
     window.addEventListener("load", generarCaptcha);
@@ -307,5 +369,5 @@ document.addEventListener("DOMContentLoaded", function () {
     //fecha.addEventListener("change", completarTabla);
     //Capta el evento que lanza el boton de enviar formulario
     formulario.addEventListener("submit", validarFormulario);
-
+    botonExpress.addEventListener("click",agendarTurnoExpress);
 });

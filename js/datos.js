@@ -1,20 +1,4 @@
-/*let cliente = {
-    "nombre": formCliente.get("nombre"),
-    "apellido": formCliente.get("apellido"),
-    "telefono": formCliente.get("telefono"),
-    "email": formCliente.get("email")
-};
-let turno = {
-    "cliente": cliente,
-    "fecha": formCliente.get("fecha"),
-    "hora": formCliente.get("hora")
-};
-
-let barbero = {
-    "nombre": formCliente.get("barbero"),
-    "turnos": [turno]
-};*/
-
+/*ARREGLO DE TURNOS CARGADOS EN SISTEMA */
 let listaDeTurnos = [
     {
         "barbero": "Nicolas",
