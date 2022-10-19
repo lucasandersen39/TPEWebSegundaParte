@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded",function(){
         col.textContent = dato;
         return col;
     }
-
+/* */
     function limpiarTabla(){
         let bodyT=document.querySelector("#idTbodyTabla");
         while (bodyT.firstChild)
