@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    "uses strict"
+    "uses strict";
     let turnoJson = {
         "barbero": "nombre",
         "fecha": "fecha",
         "hora": "hora",
+        "sucursal": "sucursal",
         "cliente": {
             "nombre": "nombreCliente",
             "apellido": "apellidoCliente",

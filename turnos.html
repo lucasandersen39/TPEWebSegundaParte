@@ -45,11 +45,10 @@
             <article>
                 <section class="busquedaTurno">
                     <section>
-                        <label for="fecha">Seleccione el dia</label>
                         <input type="date" name="fecha" id="idFechaTurno">
                     </section>
                     <section>
-                        <select name="barbero" id="idSelectBarbero" required>
+                        <select name="barbero" id="idSelectBarbero">
                             <option value="vacio">Seleccione Barbero</option>
                             <option value="Nicolas">Nicolas</option>
                             <option value="Ernesto">Ernesto</option>
@@ -57,21 +56,15 @@
                         </select>
                     </section>
                     <section>
-                        <select name="horarioTurno" id="idSelectHora" required>
-                            <option value="vacio">Seleccione hora</option>
-                            <option value="10">10 Hs</option>
-                            <option value="11">11 Hs</option>
-                            <option value="12">12 Hs</option>
-                            <option value="13">13 Hs</option>
-                            <option value="14">14 Hs</option>
-                            <option value="15">15 Hs</option>
-                            <option value="16">16 Hs</option>
-                            <option value="17">17 Hs</option>
-                            <option value="18">18 Hs</option>
+                        <select name="selectSucursal" id="idSelectSucursal">
+                            <option value="vacio">Seleccione sucursal</option>
+                            <option value="sucPlaya">Playa</option>
+                            <option value="sucCentro">Centro</option>
                         </select>
                     </section>
-
-                    <input type="button" value="Buscar Turno" id="idBotonFiltro">
+                    <section>
+                        <input type="button" value="Buscar Turno" id="idBotonFiltro">
+                    </section>
                 </section>
                 <section class="sectionFormulario">
                     <!--TABLA-->
@@ -99,7 +92,7 @@
                         <p>Hora:</p>
                         <p id="idReservaHora"></p>
                     </div>
-                    
+
                     <div>
                         <label for="nombre">Nombre</label>
                         <input type="text" id="idInputNombre" name="nombre" value="" required>
@@ -128,7 +121,7 @@
                         <input type="submit" value="Reservar Turno" class="botonSubmit" id="idBotonReserva">
                     </div>
                 </section>
-                
+
             </form>
             <div id="infoConfirmaTurno">
 

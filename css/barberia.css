@@ -235,9 +235,11 @@ footer{
 .busquedaTurno{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin: 10px 10px;
 }
 .busquedaTurno section{
     width: 70%;
+    margin: 5px 0px;
 }
 .sectionFormulario{
     display: grid;
