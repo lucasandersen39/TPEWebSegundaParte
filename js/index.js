@@ -121,13 +121,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let bodyTable = document.querySelector("#idTbodyTabla");
         for (let hora = 10; hora <= 18; hora++) {
             let fila = document.createElement("tr");
-            fila.appendChild(crearColumna(hora));
+            fila.appendChild(crearColumna(hora+"hs"));
             bodyTable.appendChild(fila);
             for (let i = 0; i < listaBarberos.length; i++) {
                 if (estaDisponible(listaBarberos[i], hora, turnos))
                     fila.appendChild(crearColumna("Disponible", "celdaDisponible", hora, listaBarberos[i]));
                 else
-                    fila.appendChild(crearColumna("Reservado", "celdaReservada", hora, listaBarberos[i]));
+                    fila.appendChild(crearColumna("Reservado", "celdaReservada", hora , listaBarberos[i]));
                 bodyTable.appendChild(fila);
             }
         }

@@ -13,23 +13,26 @@
 </head>
 
 <body>
-    <header>
-        <nav class="menu">
-            <ul class="lista-navegacion" id="idUlNav">
-                <a class="item" href="index.html">
-                    <li>INICIO</li>
-                </a>
-                <a class="item" href="servicios.html">
-                    <li>SERVICIOS</li>
-                </a>
-                <a class="item" href="turnos.html">
-                    <li>TURNOS</li>
-                </a>
-            </ul>
-        </nav>
-        <div class="cabecera" id="idDivCabecera">
-            <img src="img/iconoMenu.png" alt="Icono Menu" class="imagenBotonMenu" id="idBtn-menu">
-            <img class="logo-img" src="img/logobarberia2.png" alt="">
+    <header id="header-nav">     
+        <div class="cabecera" id="idDivCabecera">       
+            <div class="responsive-div">
+                <img src="img/iconoMenu.png" alt="Icono Menu" class="imagenBotonMenu" id="idBtn-menu">
+                <img class="logo-img" src="img/logobarberia2.png" alt="">
+            </div>
+            <nav class="menu">
+                <ul class="lista-navegacion" id="idUlNav">                 
+                    <li> 
+                        <img src="img/home.png" alt=""><a  class="item" href="index.html" > INICIO</a> 
+                    </li>
+                    <li>
+                        <img src="img/tijeras.png" alt=""><a class="item" href="servicios.html"> SERVICIOS</a>   
+                    </li>
+                    <li>
+                       <img src="img/turno.png" alt=""><a class="item" href="turnos.html"> TURNOS</a> 
+                    </li>                 
+                </ul>
+            </nav>
+
             <div class="img-redes">
                 <a href="https://instagram.com/nicolastonanes?igshid=YmMyMTA2M2Y="><img class="img-instagram"
                         src="img/iconoInstagram.png" alt="Icono Instagram"></a>
@@ -37,11 +40,12 @@
             </div>
         </div>
     </header>
+
     <main>
-        <article>
-            <header>
-                <h1 class="cabeceraBodyH1">RESERVA DE TURNO</h1>
-            </header>
+        <header>
+            <h1 class="h1divIndex">RESERVA DE TURNO</h1>
+        </header>
+        <article class="principal-turnos">         
             <article>
                 <section class="busquedaTurno">
                     <section>
@@ -61,11 +65,11 @@
                             <option value="Playa">Playa</option>
                             <option value="Centro">Centro</option>
                         </select>
-                    </section>
+                    </section>                  
                 </section>
                 <section class="sectionFormulario">
                     <!--TABLA-->
-                    <p>Seleccione un turno disponible</p>
+                    <h1 class="turnosh1">Seleccione un turno disponible</h1>
                     <table class="bordesTabla">
                         <thead id="idTheadTabla">
 
@@ -118,24 +122,33 @@
                         <input type="submit" value="Reservar Turno" class="botonSubmit" id="idBotonReserva">
                     </div>
                 </section>
-
             </form>
             <div id="infoConfirmaTurno">
 
             </div>
         </article>
     </main>
+
     <footer>
         <div class="contacto-footer">
-            <p class="p-footer">©Copyright Nicolas Toñanes Barber Shop</p>
-            <p class="p-footer">Direccion: Av. 10 3739</p>
-            <a href="mailto:barberia@gmail.com">
-                <p class="p-footer">Mail: barberia@gmail.com</p>
-            </a>
-            <a href="tel:+2262-605086">
-                <p class="p-footer">Telefono: 2262-605086</p>
-            </a>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.132180032307!2d-58.727528436205944!3d-38.576803848303484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x958f9802d9b6e865%3A0xa28fea451d54cc14!2sAv.%2010%203739%2C%20B7630AOW%20Necochea%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1666208996323!5m2!1ses-419!2sar"   allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+           <div class="footer-datos">        
+                <p class="p-footer"><img src="img/ubicacion.png" alt=""> Av. 10 3739</p>
+                <p>
+                    <a href="mailto:barberia@gmail.com">  
+                    <p class="p-footer"><img src="img/mail.png" alt=""> barberia@gmail.com</p></a>
+                </p>
+                <p>
+                    <a href="tel:+2262-605086">
+                        <p class="p-footer"><img src="img/telefono.png" alt=""> 2262-605086</p>
+                    </a>
+                </p>          
+           </div>
+            <div class="footer-copyright">
+                 <p class="p-footer">Nicolas Toñanes Barber Shop</p>
 
+                <p class="p-footer"> <span><strong>©Copyright Todos los Derechos Reservados</strong> </span> </p>
+            </div>
         </div>
     </footer>
 </body>

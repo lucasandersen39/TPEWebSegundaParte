@@ -8,33 +8,55 @@
 .cabecera{
     background-color: rgb(253, 251, 236);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
+
+
+.lista-navegacion li {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
 .imagenBotonMenu{
+    margin-left: 5%;
+    margin-bottom: 25%;
+    margin-right: 5%;
     width: 10%;
     height: 10%;
 }
+
+
 .logo-img{
-    width: 40%;
+    width: 50%;
+    margin-left: 5%;
+      
 }
+
+.responsive-div{
+    margin-bottom: 5%; 
+}
+
+
 .img-redes{
     width: 10%;
+    margin-right: 10%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    margin-left: 45%;
     align-items: flex-start;
 }
 .img-redes a{
     width: 50%;
+    margin: 10px;
 }
 .img-instagram{
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
 }
 
 .img-facebook{
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
 }
 
 .menu{
@@ -52,24 +74,34 @@ ul.lista-navegacion{
 }
 ul.lista-navegacion.mostrar{
     display: flex;
+    background-color: rgb(253, 251, 236);
+    list-style: none;
+}
+ul.lista-navegacion.mostrar a{
+    color: black;
+}
+ul.lista-navegacion li img{
+    width: 30px;
+    height: 30px;
 }
 .item{
     list-style-type: none;
     color: white;
     font-family: 'Open Sans', sans-serif;
-    margin-top: 10px;
-    margin-bottom: 10px;
     text-decoration: none;
 }
 
-.item:hover{
-    border-bottom: 2px solid white;
-    border-top: 2px solid white;
-}
 
 /*FIN HEADER*/
 
 /*FOOTER*/
+
+iframe{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width:50%; 
+    height:70%
+}
 
 footer{ 
     margin-top: 1%;
@@ -83,10 +115,32 @@ footer{
     padding-top: 2%;
     margin-right: 2%;
     text-align: center;
+    flex-direction: column;
 }
 .p-footer{
     color: white;
-    margin-top: 2%;
+    margin-bottom:3%;
+}
+
+
+
+
+.contacto-footer .footer-datos p a{
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+}
+
+.p-footer span{
+    padding-top: 10px;
+    margin-bottom: 10px;
+    border-top: #555 1px solid;
+}
+
+
+.p-footer img{
+    width: 20px;
+    height: 20px;
 }
 /*FIN FOOTER*/
 
@@ -137,7 +191,8 @@ footer{
 }
 .imagenes-local{
     width: 80%;
-    box-shadow: 2px 8px 7px 0px;
+    margin-bottom: 5%;
+    margin-top: 5%;
 }
 .img-peluquero{
     width: 80%;
@@ -167,16 +222,7 @@ footer{
     box-shadow: -2px -2px 4px;
 }
 /*FIN BODY INDEX*/
-.cabeceraBodyH1{
-    margin-bottom: 2%;
-    padding-bottom: 1%;
-    padding-top: 1%;
-    background-color: black;
-    color: white;
-    font-family:"Merriweather", sans-serif;
-    font-size: 20px;
-    text-align: center;
-}
+
 /*BODY SERVICIOS*/
 .contentServicios{
     display: flex;
@@ -190,6 +236,8 @@ footer{
     line-height: 26px;
     font-style: italic;
     text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .listaServicios{
@@ -224,6 +272,8 @@ footer{
 }
 .listaServicios li{
     list-style: none;
+    margin-top: 5%;
+    margin-bottom: 20%;
 }
 .img-tintura{
     height: 200px;
@@ -233,19 +283,21 @@ footer{
 
 /*INICIO BODY TURNOS*/
 .busquedaTurno{
-    display: grid;
+    display: column;
     grid-template-columns: 1fr 1fr;
-    margin: 10px 10px;
+    margin-top:2%;
+    margin-bottom: 1%;
+    text-align: -webkit-center;
 }
 .busquedaTurno section{
     width: 70%;
-    margin: 5px 0px;
+    margin-bottom:3%; 
+    margin-top: 1%;
 }
 .sectionFormulario{
     display: grid;
     grid-template-columns: min-content;
-    justify-content: center;
-    
+    justify-content: center; 
 }
 
 .sectionFormulario div{
@@ -260,26 +312,61 @@ footer{
     font-size: 1em;
 }
 
+.turnosh1{
+    color: white;
+    font-family: 'Noto Sans',sans-serif;
+    background-color: black;
+    font-size: medium;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: center;
+}
+
+table{
+    text-align: center;
+    width: 100%;
+    border-collapse:collapse ;
+    font-family: 'Noto Sans',sans-serif;
+    box-shadow: 2px 2px 7px 0px black;
+    cursor: pointer;
+}
+
+tbody tr .celdaDisponible:hover {
+    background-color: #369681;
+    box-shadow: 2px 2px 7px 2px ;
+    color: black ;
+}
+/*tbody tr .celdaDisponible {
+    background-color: #369681;
+    box-shadow: 2px 2px 7px 2px ;
+    color: black ;
+    cursor: pointer;
+}*/
+
 .bordesTabla, .bordesTabla thead tr td, .bordesTabla tbody tr td{
-    border: 1px solid black;
+    padding:10px;
 }
 
 .bordesTabla tbody tr td.seleccionada{
     background-color: rgb(22, 102, 139);
 }
+
 .bordesTabla thead tr td{
     font-weight: 900;
 }
 
 .celdaReservada{
-    background-color: #555;
+    background-color: #555 !important;
 }
+
 .celdaDisponible{
-    background-color: darkkhaki;
+    
 }
+
 #idFormulario{
+    margin-top: 5%;
+    margin-bottom: 5%;
     display: none;
-    border: 1px solid green;
 }
 
 #idFormulario.desplegar{
@@ -289,6 +376,7 @@ footer{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
 /*CAPTCHA y RESUMEN DEL TURNO*/
 
 .captcha{
@@ -318,8 +406,8 @@ footer{
 .divInfoTurno{
     border-top: 5%;
     border: 1px solid black;
-    margin: 5% auto auto;
-   
+    margin: 2% 25%;
+    text-align: center;
 }
 
 .listaReservaTurno{
@@ -332,3 +420,132 @@ li.elementoListaReserva:hover{
     border: none;
 }
 /*FIN BODY TURNOS*/
+
+
+
+@media only screen and (min-width: 900px){
+    /*HEADER*/
+    #idBtn-menu{
+        display: none;
+    }
+
+    .cabecera{
+        background-color: rgb(253, 251, 236);
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: -50px;
+        justify-content: space-between;
+    }
+
+    .logo-img{
+        width: 120px;
+        height: 120px;
+    }
+
+    .img-redes{
+        flex-direction: column;
+        margin-left: 0%;
+        padding-bottom: 20px;
+    }
+
+    .menu{ 
+       background-color: rgb(253, 251, 236);
+       padding-left: 40px;
+       
+    }
+    ul.lista-navegacion{
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+    }
+
+    ul.lista-navegacion li:hover{
+        border-top: 2px solid  black;
+    }
+    ul.lista-navegacion a{
+        color: black;
+    }
+    ul.lista-navegacion li{
+        padding-bottom: 10px ;
+        margin:0 50px;
+
+    }
+
+/*FIN HEADER*/
+
+    /*FOOTER*/
+    iframe{
+        margin-top: 2%;
+        margin-bottom: 2%;
+        width:450px; 
+        height:250px;
+    }
+
+    
+.footer-datos{
+    margin-bottom: 2%;
+    display: flex;
+    text-align: center;
+    padding-left:28% ;
+}   
+/*FIN FOOTER*/
+
+    /*BODY INDEX*/
+    #contentNosotros{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 5%;
+        align-items: flex-start;
+    }
+
+    .p-historia{
+        box-shadow: none;
+    }
+
+    .h1divIndex{
+        width: 100%;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        background-color: black;
+        color: white;
+        font-family:"Merriweather", sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .imagenes-local{
+        margin-top: 2%;
+        margin-right: 5%;
+        width: 300%;
+    }
+/*FIN BODY INDEX*/
+
+    /*SERVICIOS*/
+    .placa1, .placa2{
+        display: flex;
+    }
+
+    .h4Servicio{
+        margin-bottom: 0;
+        padding-left: 150px;
+        padding-right: 200px;
+    }
+    
+    .listaServicios{
+       flex-direction: column;
+    }
+    .listaServicios li{
+        margin-bottom: 0%;
+    }
+
+    .listaServicios p{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+/*FIN SERVICIOS*/
+
+    /*TURNOS*/
+    
+/*FIN TURNOS*/
+}
