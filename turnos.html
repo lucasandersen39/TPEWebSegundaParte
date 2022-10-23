@@ -14,7 +14,7 @@
 
 <body>
     <header id="header-nav">     
-        <div class="cabecera" id="idDivCabecera">       
+        <div class="cabecera" id="idDivCabecera">    
             <div class="responsive-div">
                 <img src="img/iconoMenu.png" alt="Icono Menu" class="imagenBotonMenu" id="idBtn-menu">
                 <img class="logo-img" src="img/logobarberia2.png" alt="">
@@ -82,46 +82,49 @@
             </article>
 
             <form action="" id="idFormulario">
-                <section class="sectionFormulario">
-                    <input type="button" value="Agregar Turno Express" id="idBotonExpress">
-                    <h3>Reserva para: </h3>
-                    <div class="datosNuevoTurno">
-                        <p>Barbero:</p>
-                        <p id="idReservaBarbero"></p>
-                        <p>Fecha:</p>
-                        <p id="idReservaFecha"></p>
-                        <p>Hora:</p>
-                        <p id="idReservaHora"></p>
-                    </div>
-
-                    <div>
-                        <label for="nombre">Nombre</label>
-                        <input type="text" id="idInputNombre" name="nombre" value="" required>
-                    </div>
-                    <div>
-                        <label for="apellido">Apellido</label>
-                        <input type="text" id="idInputApellido" name="apellido" value="" required>
-                    </div>
-                    <div>
-                        <label for="numero">Telefono</label>
-                        <input type="text" id="idNumeroTelefono" name="numero" value="" required
-                            placeholder="Sin el 15">
-                    </div>
+                <section class="div-Form">
+                    <section class="sectionFormulario">
+                        <input type="button" value="Agregar Turno Express" id="idBotonExpress">
+                        <h3>Reserva para: </h3>
+                        <div class="datosNuevoTurno">
+                            <p>Barbero:</p>
+                            <p id="idReservaBarbero"></p>
+                            <p>Fecha:</p>
+                            <p id="idReservaFecha"></p>
+                            <p>Hora:</p>
+                            <p id="idReservaHora"></p>
+                        </div>
+    
+                        <div>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="idInputNombre" name="nombre" value="" required>
+                        </div>
+                        <div>
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="idInputApellido" name="apellido" value="" required>
+                        </div>
+                        <div>
+                            <label for="numero">Telefono</label>
+                            <input type="text" id="idNumeroTelefono" name="numero" value="" required
+                                placeholder="">
+                        </div>
+                    </section>
+                    <section class="sectionFormularioCaptcha">
+                        <div id="idDivCaptcha" class="captcha">
+                            <p id="idTextoCaptcha" class="textoCaptcha">
+                            </p>
+                        </div>
+                        <div class="ingresaCaptcha">
+                            <input type="text" name="ingresaCaptcha" id="idInputIngresaCaptcha" required
+                                placeholder="Ingrese el captcha">
+                        </div>
+    
+                        <div class="divBotonSubmit">
+                            <input type="submit" value="Reservar Turno" class="botonSubmit" id="idBotonReserva">
+                        </div>
+                    </section>
                 </section>
-                <section class="sectionFormulario">
-                    <div id="idDivCaptcha" class="captcha">
-                        <p id="idTextoCaptcha" class="textoCaptcha">
-                        </p>
-                    </div>
-                    <div class="ingresaCaptcha">
-                        <input type="text" name="ingresaCaptcha" id="idInputIngresaCaptcha" required
-                            placeholder="Ingrese el captcha">
-                    </div>
-
-                    <div class="divBotonSubmit">
-                        <input type="submit" value="Reservar Turno" class="botonSubmit" id="idBotonReserva">
-                    </div>
-                </section>
+                
             </form>
             <div id="infoConfirmaTurno">
 

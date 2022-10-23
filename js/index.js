@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return arrAux;
     }
 
+
     let tBodyTabla = document.querySelector("#idTbodyTabla");
     tBodyTabla.addEventListener("click", (event) => {
         let datosReserva = event.target.id.split('-');
@@ -93,9 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
         else
             formulario.classList.remove("desplegar");
     });
-    function limpiarEstiloCeldas() {
 
-    }
+
+
+
     function armarFecha(fecha) {
         let datos = fecha.split('-');
         return (datos[2] + "-" + datos[1] + "-" + datos[0]);
@@ -270,7 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let elementoLista3 = document.createElement("li");
         elementoLista3.classList.add("elementoListaReserva");
-        let info3 = document.createTextNode("Fecha: " + nuevoTurno.fecha + " Hora: " + nuevoTurno.hora);
+        let info3 = document.createTextNode("Fecha: " + nuevoTurno.fecha + "/  Hora: " + nuevoTurno.hora+"hs");
         elementoLista3.appendChild(info3);
         lista.appendChild(elementoLista3);
 

@@ -245,7 +245,7 @@ footer{
     margin: 1%;
 
 }
-.listaServicios li article header h3{
+.listaServicios li article header {
     font-style: normal;
     font-variant-ligatures: normal;
     font-variant-caps: normal;
@@ -282,6 +282,9 @@ footer{
 /*FIN BODY SERVICIOS*/
 
 /*INICIO BODY TURNOS*/
+#idFechaTurno, #idSelectBarbero, #idSelectSucursal{
+    font-family: "Merriweather", sans-serif;
+}
 .busquedaTurno{
     display: column;
     grid-template-columns: 1fr 1fr;
@@ -304,13 +307,41 @@ footer{
     margin: 5px 0;
 }
 
-.sectionFormulario div input{
-    margin: 2px 0;
+.sectionFormulario input{
+    margin: 10px 0;
+    padding: 5px 5px;
 }
+
+.sectionFormulario h3, #infoConfirmaTurno h3{
+    text-align: center;
+    font-family: "Merriweather",sans-serif;
+}
+
+#infoConfirmaTurno li{
+    margin:8px 0;
+    font-family: sans-serif;
+    padding: 4px 0 ;
+}
+
+.sectionFormulario  div input{
+   background-color: none;
+   border: none;
+   padding: 2px 3px;
+   font-size: 1rem;
+   outline: none;
+   font-family: "Merriweather",sans-serif;
+   border-bottom: 1px solid #555;
+}
+
+
 .sectionFormulario div label{
     font-family:"Merriweather", sans-serif;
     font-size: 1em;
+    color: #555;
+    cursor: pointer;
 }
+
+
 
 .turnosh1{
     color: white;
@@ -336,12 +367,6 @@ tbody tr .celdaDisponible:hover {
     box-shadow: 2px 2px 7px 2px ;
     color: black ;
 }
-/*tbody tr .celdaDisponible {
-    background-color: #369681;
-    box-shadow: 2px 2px 7px 2px ;
-    color: black ;
-    cursor: pointer;
-}*/
 
 .bordesTabla, .bordesTabla thead tr td, .bordesTabla tbody tr td{
     padding:10px;
@@ -356,25 +381,42 @@ tbody tr .celdaDisponible:hover {
 }
 
 .celdaReservada{
-    background-color: #555 !important;
+    background-color: #555 ;
 }
 
-.celdaDisponible{
-    
-}
+
 
 #idFormulario{
     margin-top: 5%;
     margin-bottom: 5%;
     display: none;
+   
 }
 
 #idFormulario.desplegar{
     display: block;
+    display: flex;
+    justify-content: center;
 }
+
+
+.div-Form {
+    width: max-content;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px -5px rgb(0 0 0/ 90%);
+}
+.div-Form section{
+    margin: 15px 15px;
+}
+.div-Form section div{
+    margin: 10px 5px;
+}
+
 .datosNuevoTurno{
+    margin: 5px 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    font-family: "Merriweather", sans-serif;
 }
 
 /*CAPTCHA y RESUMEN DEL TURNO*/
@@ -384,9 +426,11 @@ tbody tr .celdaDisponible:hover {
     width: 70%;
 }
 
+#idDivCaptcha{
+    text-align: center;
+}
 
 .textoCaptcha{
-    text-align: center;
     font-size: 2em;
     font-family: fantasy;
     letter-spacing: 0.3em;
@@ -394,6 +438,8 @@ tbody tr .celdaDisponible:hover {
 }
 
 /*DIV del Inpunt que ingresa el captcha*/
+
+
 .ingresaCaptcha{ 
     margin-top: 3%;
     margin-left: 5%;
@@ -419,6 +465,16 @@ tbody tr .celdaDisponible:hover {
 li.elementoListaReserva:hover{
     border: none;
 }
+
+.divBotonSubmit{
+    text-align: center;
+}
+
+.divBotonSubmit input{
+    padding: 5px 5px;
+}
+
+
 /*FIN BODY TURNOS*/
 
 
@@ -428,14 +484,14 @@ li.elementoListaReserva:hover{
     #idBtn-menu{
         display: none;
     }
-
     .cabecera{
         background-color: rgb(253, 251, 236);
+        display: flex;
+        flex-direction:row;
         width: 100%;
-        flex-direction: row;
         align-items: center;
         margin-bottom: -50px;
-        justify-content: space-between;
+        justify-content: space-around;
     }
 
     .logo-img{
