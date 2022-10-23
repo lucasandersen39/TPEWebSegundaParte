@@ -418,6 +418,34 @@ tbody tr .celdaDisponible:hover {
     grid-template-columns: 1fr 1fr;
     font-family: "Merriweather", sans-serif;
 }
+/*TURNOS ADMINISTRADOR*/
+.oculto{
+    display: none;
+}
+
+.button-sesion{
+    margin: 20px 0;
+    flex-direction: column;
+    text-align: center;
+}
+.button-sesion button{
+    font-family: "Merriweather", sans-serif;
+    padding: 5px 5px;
+
+}
+#idFormularioAdmin{
+    margin: 5px 0px;
+}
+.sectionFormularioAdmin{
+    text-align: center;
+    margin: 30px 0px;
+    font-family: "Merriweather", sans-serif;
+}
+.sectionFormularioAdmin div{
+    margin: 10px 0px;
+}
+
+
 
 /*CAPTCHA y RESUMEN DEL TURNO*/
 

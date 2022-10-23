@@ -45,11 +45,16 @@
         <header>
             <h1 class="h1divIndex">RESERVA DE TURNO</h1>
         </header>
-        <article class="pincipal-turnos-adm">
+        <section class="button-sesion">
+            <button id="button-admin">Administrador</button>
+            <button id="button-usuario">Usuario</button>
+        </section>
+
+        <article class="pincipal-turnos-adm ">
             <form action="" id="idFormularioAdmin">
                 <section class="div-FormAdmin">
-
                     <section class="sectionFormularioAdmin">
+                        <div>
                             <label for="nombre">Nombre</label>
                             <input type="text" id="idInputNombre" name="nombre" value="" required>
                         </div>
@@ -87,31 +92,34 @@
                         <section>
                             <input type="date" name="fecha" id="idFechaTurno">
                         </section>
-                        <section>
-                            <table class="tablaAdmin">
-                                <div>
-                                <button><input type="button" name="Generar turnos" id="generarDatos">Generar datos</button>
-                                <button><input type="button" name="Borrar datos" id="borrarDatos">Borrar Datos</button>
-                                </div>
-                                <thead id="idTheadTablaAdmin">
-                                    <tr>
-                                        <td >Nombre</td>
-                                        <td>Apellido</td>
-                                        <td>Telefono</td>
-                                        <td>Barbero</td>
-                                        <td>Fecha</td>
-                                        <td>Hora</td>
-                                    </tr>
-                                </thead>
-                                <tbody id="idTbodyTablaAdmin">
-        
-                                </tbody>
-                            </table>
-                        </section>
                     </section>
+
+                      
+                    
                 </section>
-                
             </form>
+            <section>
+                <table class="tablaAdmin">
+                    <div>
+                    <button>Generar datos</button>
+                    <button>Generar al Azar</button>
+                    <button>Borrar Datos</button>
+                    </div>
+                    <thead id="idTheadTablaAdmin">
+                        <tr>
+                            <td >Nombre</td>
+                            <td>Apellido</td>
+                            <td>Telefono</td>
+                            <td>Barbero</td>
+                            <td>Fecha</td>
+                            <td>Hora</td>
+                        </tr>
+                    </thead>
+                    <tbody id="idTbodyTablaAdmin">
+
+                    </tbody>
+                </table>
+            </section>
         </article>
 
         <article class="principal-turnos">         
