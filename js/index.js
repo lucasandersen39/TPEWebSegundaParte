@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "barbero": "nombre",
         "fecha": "fecha",
         "hora": "hora",
-        "sucursal": "sucursal",
         "cliente": {
             "nombre": "nombreCliente",
             "apellido": "apellidoCliente",
@@ -27,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return 1;
             else
                 return -1;
+        
         if (item1.fecha < item2.fecha)
             return -1;
         return 0;
@@ -43,20 +43,13 @@ document.addEventListener("DOMContentLoaded", function () {
     inputFecha.addEventListener("change",buscarTurnos);
     let inputBarbero=document.querySelector("#idSelectBarbero");
     inputBarbero.addEventListener("change",buscarTurnos);
-    let inputSuc=document.querySelector("#idSelectSucursal");
-    inputSuc.addEventListener("change",buscarTurnos);
 
     function buscarTurnos(){
         let selBarbero = document.querySelector("#idSelectBarbero");
-        let selSuc = document.querySelector("#idSelectSucursal");
         let arrAux;
         let listBarberos = [...barberos];
         arrAux = buscarPorFecha(listaTurnos, porFecha.value);
         
-        if (selSuc.value != "vacio"){
-            arrAux = buscarPorSucursal(arrAux, selSuc.value,listBarberos);
-            listBarberos = buscarBarberoSucursal(listaTurnos,selSuc.value);
-        }
         if (selBarbero.value != "vacio") {
             arrAux = buscarPorBarbero(arrAux, selBarbero.value);
             listBarberos = [];
@@ -67,17 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Tamaño de arrAux "+arrAux.length);
         cargarTurnos(arrAux, listBarberos);
     }
-
-    function buscarBarberoSucursal(arreglo,sucursal){
-        let arrAux=[];
-        for (let i=0;i<arreglo.length;i++){
-            if (arreglo[i].sucursal==sucursal)
-                if (!arrAux.includes(arreglo[i].barbero))
-                        arrAux.push(arreglo[i].barbero);
-        }
-        return arrAux;
-    }
-
 
     let tBodyTabla = document.querySelector("#idTbodyTabla");
     tBodyTabla.addEventListener("click", (event) => {
@@ -196,18 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return arregloAux;
     }
-
-    function buscarPorSucursal(arreglo, suc,listBarberos) {
-        let arregloAux = [];
-        for (let i = 0; i < arreglo.length; i++) {
-            if (arreglo[i].sucursal == suc){
-                arregloAux.push(arreglo[i]);
-                
-            }
-        }
-        return arregloAux;
-    }
-
 
     /*CAPTCHA */
 
