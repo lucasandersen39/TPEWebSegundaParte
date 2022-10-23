@@ -1,17 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     "uses strict";
-    let turnoJson = {
-        "barbero": "nombre",
-        "fecha": "fecha",
-        "hora": "hora",
-        "cliente": {
-            "nombre": "nombreCliente",
-            "apellido": "apellidoCliente",
-            "telefono": 000000
-        }
-    };
+    
     let botonMenu = document.querySelector("#idBtn-menu");
     botonMenu.addEventListener("click", desplegarMenu);
+  
+      /* TURNOS ADMINISTRADOR */
+      let btnAdmin=document.querySelector("#button-admin");
+      let btnUsuario=document.querySelector("#button-usuario");
+  
+      btnAdmin.addEventListener("ckick",function(){
+          let articleUsuario=dpcument.querySelector(".principal-turnos");
+          articleUsuario.classList.toggle(".oculto");
+          let articleAdmin=document.querySelector(".pincipal-turnos-adm");
+          articleAdmin.classList.toggle(".oculto");
+      });
+      
     //asigno a listaBarberos la lista listaDeBarberos generada en datos.js
     //donde se encuentran cargados los turnos de cada barbero
     let listaTurnos = [];
@@ -43,7 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
     inputFecha.addEventListener("change",buscarTurnos);
     let inputBarbero=document.querySelector("#idSelectBarbero");
     inputBarbero.addEventListener("change",buscarTurnos);
-
+    /**
+     * Busca todos los turnos que cumplan con las condiciones.
+     * Primero filtra el arreglo de turnos de acuerdo a la fecha seleccionada,
+     * Luego filtra el resultado del fultrado anterior por los barberos seleccionados en el input barbero
+     * arma el THead de la tabla y carga los elementos que hayan cumplido con las 2 anteriores condiciones
+     */
     function buscarTurnos(){
         let selBarbero = document.querySelector("#idSelectBarbero");
         let arrAux;
@@ -76,10 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
         else
             formulario.classList.remove("desplegar");
     });
-
-
-
-
+    /**
+     * Formatea una fecha dada en formato DD/MM/AAAA
+     * @param {} fecha fecha que se obtiene del input date
+     * @returns Retorna un string con los valores de la fecha invertidos
+     */
     function armarFecha(fecha) {
         let datos = fecha.split('-');
         return (datos[2] + "-" + datos[1] + "-" + datos[0]);
@@ -116,6 +125,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
+    /**
+     * Crea una celda para agregar a la tabla de turnos
+     * @param {*} dato Dato que se quiere agregar en la celda
+     * @param {*} estilo Estilo que se quiere dar a la celda
+     * @param {*} h Hora que se usa para formar el id del elemento
+     * @param {*} n Nombre del barbero usado para generar el id del elemento
+     * @returns Retorna una celda ya ingresada y formateada
+     */
     function crearColumna(dato, estilo, h, n) {
         let col = document.createElement("td");
         col.textContent = dato;
@@ -199,6 +216,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return arregloAux;
     }
+
+    
 
     /*CAPTCHA */
 
