@@ -123,7 +123,13 @@ document.addEventListener("DOMContentLoaded", function () {
         col.id = "" + h + "-" + n;
         return col;
     }
-
+    /**
+     * Recorre el arreglo de los turnos y verifica si un turno con un barbero en una fecha y hora dada existe
+     * @param {*} nombre Nombre del barbero 
+     * @param {*} hora Hora del turno que estamos verificando si se encuentra disponible
+     * @param {*} turnos Arreglo de turnos 
+     * @returns Retorn true si no se encuentra en el arreglo de turno, false si ya existe
+     */
     function estaDisponible(nombre, hora, turnos) {
         let estaDisponible = true;
         let i = 0;
@@ -134,7 +140,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 i++;
         return estaDisponible;
     }
-
+    /**
+     * Arma el THead de la tabla de turnos del cliente con los valores pasados en el arreglo arBArbero
+     * @param {*} arBarberos Arreglo con los nombres de los barberos que queremos añadir en las columnas de la tabla
+     */
     function armarTHead(arBarberos) {
         let theadT = document.querySelector("#idTheadTabla");
         let fila = document.createElement("tr");
@@ -154,13 +163,20 @@ document.addEventListener("DOMContentLoaded", function () {
         while (bodyT.firstChild)
             bodyT.removeChild(bodyT.firstChild);
     }
-
+    /**
+     * Elimina todos los campos del THead para poder generar uno THead nuevo
+     */
     function limpiarTHead() {
         let headT = document.querySelector("#idTheadTabla");
         while (headT.firstChild)
             headT.removeChild(headT.firstChild);
     }
-
+    /**
+     * Busca en el arreglo todos los turnos que tengan la misma fecha que fecha
+     * @param {*} arreglo Arreglo de turnos
+     * @param {*} fecha Fecha por la que se quiere filtrar
+     * @returns Retorna un arreglo con todos los turnos que tienen la misma fecha
+     */
     function buscarPorFecha(arreglo, fecha) {
         let arregloAux = [];
         for (let i = 0; i < arreglo.length; i++) {
@@ -169,7 +185,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return arregloAux;
     }
-
+    /**
+     * Busca en el arreglo todos los turnos que esten asignados a un barbero dado
+     * @param {*} arreglo Arreglo de turnos donde se desea buscar por barbero
+     * @param {*} nombre Barbero por el cual se desea buscar los turnos
+     * @returns Retorna un arreglo con todos los turnos que cumplan con la condicion dada
+     */
     function buscarPorBarbero(arreglo, nombre) {
         let arregloAux = [];
         for (let i = 0; i < arreglo.length; i++) {
@@ -194,8 +215,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //define un arreglo con las letras disponibles
     //genera un numero aleatorio entre 0 y el tamaño del arreglo usando la funcion numeroAleatorio
     //va concatenando la cadena con la nueva letra generada
-
-
     function armarPalabra(cantLetras) {
         let letras = 'abcdefghijklmnopqrstuvwxyz';
         let cadena = '';
@@ -297,15 +316,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
         return nuevoTurno;
     }
-    function agendarTurnoExpress(){
-        let bar = document.querySelector("#idReservaBarbero").textContent;
-        let fe = armarFecha(document.querySelector("#idReservaFecha").textContent);
-        let hor = document.querySelector("#idReservaHora").textContent;
-        listaTurnos.push(crearTurnoJson(bar, fe, hor, "Sin datos", "Sin datos", 0));
-        cargarTurnos(buscarPorFecha(listaTurnos, porFecha.value), barberos);
-        
-        cerrarForm();
-    }
 
     function agendarTurno() {
         let bar = document.querySelector("#idReservaBarbero").textContent;
@@ -321,11 +331,6 @@ document.addEventListener("DOMContentLoaded", function () {
         cerrarForm();
     }
 
-    function mostrarTurnos() {
-        for (let i = 0; i < listaTurnos.length; i++) {
-            console.log("-" + listaTurnos[i].barbero + " * " + listaTurnos[i].hora + " * " + listaTurnos[i].cliente.nombre + " * " + listaTurnos[i].cliente.telefono);
-        }
-    }
     //Pregunta si todos los campos requeridos estan completos
     //Si lo estan, valida que el captcha sea correcto
     //Si es correco imprime un resumen del turno dado
@@ -334,14 +339,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let textoCaptcha = document.querySelector("#idTextoCaptcha");
         let inputIngresaCaptcha = document.querySelector("#idInputIngresaCaptcha");
 
-        //evento.preventDefault() evita que se envie el form ya que aun no tenemos destino
         evento.preventDefault();
-        // if (validarTodosLosCampos())
-        if (textoCaptcha.textContent == inputIngresaCaptcha.value) {
-            
+        if (textoCaptcha.textContent == inputIngresaCaptcha.value) {         
             agendarTurno();
-            //formulario.submit() se encargaria de enviar el form cuando los datos sean correctos
-            //formulario.submit();
         }
         else {
             errorCaptchaIngresado();
@@ -350,8 +350,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     //carga el captcha al cargarse la pagina
     window.addEventListener("load", generarCaptcha);
-    //carga la tabla con valores random al seleccionar una fecha en el input date id="idFechaTurno"
-    //fecha.addEventListener("change", completarTabla);
     //Capta el evento que lanza el boton de enviar formulario
     formulario.addEventListener("submit", validarFormulario);
     botonExpress.addEventListener("click",agendarTurnoExpress);
