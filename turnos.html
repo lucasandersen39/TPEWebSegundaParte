@@ -45,6 +45,75 @@
         <header>
             <h1 class="h1divIndex">RESERVA DE TURNO</h1>
         </header>
+        <article class="pincipal-turnos-adm">
+            <form action="" id="idFormularioAdmin">
+                <section class="div-FormAdmin">
+
+                    <section class="sectionFormularioAdmin">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="idInputNombre" name="nombre" value="" required>
+                        </div>
+                        <div>
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="idInputApellido" name="apellido" value="" required>
+                        </div>
+                        <div>
+                            <label for="numero">Telefono</label>
+                            <input type="text" id="idNumeroTelefono" name="numero" value="" required
+                                placeholder="">
+                        </div>
+                        <div>
+                            <select name="Hora" id="idSelectHora">
+                                <option value="vacio">Seleccione Hora</option>
+                                <option value="10hs">10hs</option>
+                                <option value="11hs">11hs</option>
+                                <option value="12hs">12hs</option>
+                                <option value="13hs">13hs</option>
+                                <option value="14hs">14hs</option>
+                                <option value="15hs">15hs</option>
+                                <option value="16hs">16hs</option>
+                                <option value="17hs">17hs</option>
+                                <option value="18hs">18hs</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select name="barbero" id="idSelectBarbero">
+                                <option value="vacio">Seleccione Barbero</option>
+                                <option value="Nicolas">Nicolas</option>
+                                <option value="Ernesto">Ernesto</option>
+                                <option value="Pedro">Pedro</option>
+                            </select>
+                        </div>
+                        <section>
+                            <input type="date" name="fecha" id="idFechaTurno">
+                        </section>
+                        <section>
+                            <table class="tablaAdmin">
+                                <div>
+                                <button><input type="button" name="Generar turnos" id="generarDatos">Generar datos</button>
+                                <button><input type="button" name="Borrar datos" id="borrarDatos">Borrar Datos</button>
+                                </div>
+                                <thead id="idTheadTablaAdmin">
+                                    <tr>
+                                        <td >Nombre</td>
+                                        <td>Apellido</td>
+                                        <td>Telefono</td>
+                                        <td>Barbero</td>
+                                        <td>Fecha</td>
+                                        <td>Hora</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="idTbodyTablaAdmin">
+        
+                                </tbody>
+                            </table>
+                        </section>
+                    </section>
+                </section>
+                
+            </form>
+        </article>
+
         <article class="principal-turnos">         
             <article>
                 <section class="busquedaTurno">
@@ -58,14 +127,7 @@
                             <option value="Ernesto">Ernesto</option>
                             <option value="Pedro">Pedro</option>
                         </select>
-                    </section>
-                    <section>
-                        <select name="selectSucursal" id="idSelectSucursal">
-                            <option value="vacio">Seleccione sucursal</option>
-                            <option value="Playa">Playa</option>
-                            <option value="Centro">Centro</option>
-                        </select>
-                    </section>                  
+                    </section>              
                 </section>
                 <section class="sectionFormulario">
                     <!--TABLA-->
@@ -83,8 +145,9 @@
 
             <form action="" id="idFormulario">
                 <section class="div-Form">
+
                     <section class="sectionFormulario">
-                        <input type="button" value="Agregar Turno Express" id="idBotonExpress">
+
                         <h3>Reserva para: </h3>
                         <div class="datosNuevoTurno">
                             <p>Barbero:</p>
