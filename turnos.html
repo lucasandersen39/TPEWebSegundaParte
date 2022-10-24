@@ -49,39 +49,39 @@
             <button id="button-admin">Administrador</button>
             <button id="button-usuario">Usuario</button>
         </section>
-        <article class="pincipal-turnos-adm">
+        <article class="pincipal-turnos-adm oculto" id="idCuerpoAdmin">
             <form action="" id="idFormularioAdmin">
                 <section class="div-FormAdmin">
-
                     <section class="sectionFormularioAdmin">
+                        <div>
                             <label for="nombre">Nombre</label>
-                            <input type="text" id="idInputNombre" name="nombre" value="" required>
+                            <input type="text" name="nombre" value="" required>
                         </div>
                         <div>
                             <label for="apellido">Apellido</label>
-                            <input type="text" id="idInputApellido" name="apellido" value="" required>
+                            <input type="text" name="apellido" value="" required>
                         </div>
                         <div>
                             <label for="numero">Telefono</label>
-                            <input type="text" id="idNumeroTelefono" name="numero" value="" required
+                            <input type="text" name="numero" value="" required
                                 placeholder="">
                         </div>
                         <div>
-                            <select name="Hora" id="idSelectHora">
+                            <select name="Hora">
                                 <option value="vacio">Seleccione Hora</option>
-                                <option value="10hs">10hs</option>
-                                <option value="11hs">11hs</option>
-                                <option value="12hs">12hs</option>
-                                <option value="13hs">13hs</option>
-                                <option value="14hs">14hs</option>
-                                <option value="15hs">15hs</option>
-                                <option value="16hs">16hs</option>
-                                <option value="17hs">17hs</option>
-                                <option value="18hs">18hs</option>
+                                <option value="10">10hs</option>
+                                <option value="11">11hs</option>
+                                <option value="12">12hs</option>
+                                <option value="13">13hs</option>
+                                <option value="14">14hs</option>
+                                <option value="15">15hs</option>
+                                <option value="16">16hs</option>
+                                <option value="17">17hs</option>
+                                <option value="18">18hs</option>
                             </select>
                         </div>
                         <div>
-                            <select name="barbero" id="idSelectBarbero">
+                            <select name="barbero">
                                 <option value="vacio">Seleccione Barbero</option>
                                 <option value="Nicolas">Nicolas</option>
                                 <option value="Ernesto">Ernesto</option>
@@ -89,36 +89,37 @@
                             </select>
                         </div>
                         <section>
-                            <input type="date" name="fecha" id="idFechaTurno">
-                        </section>
-                        <section>
-                            <table class="tablaAdmin">
-                                <div>
-                                <button><input type="button" name="Generar turnos" id="generarDatos">Generar datos</button>
-                                <button><input type="button" name="Borrar datos" id="borrarDatos">Borrar Datos</button>
-                                </div>
-                                <thead id="idTheadTablaAdmin">
-                                    <tr>
-                                        <td >Nombre</td>
-                                        <td>Apellido</td>
-                                        <td>Telefono</td>
-                                        <td>Barbero</td>
-                                        <td>Fecha</td>
-                                        <td>Hora</td>
-                                    </tr>
-                                </thead>
-                                <tbody id="idTbodyTablaAdmin">
-        
-                                </tbody>
-                            </table>
+                            <input type="date" name="fecha" id="idFechaTurnoAdmin">
                         </section>
                     </section>
+                    <input type="submit" value="Registrar Turno">                
                 </section>
-                
             </form>
+            <section>
+                
+                <table class="tablaAdmin">
+                    <div>
+                    <button id="idBotonAzar">Generar al Azar</button>
+                    <button id="idBotonLimpiarAdmin">Borrar Datos</button>
+                    </div>
+                    <thead id="idTheadTablaAdmin">
+                        <tr>
+                            <td >Nombre</td>
+                            <td>Apellido</td>
+                            <td>Telefono</td>
+                            <td>Barbero</td>
+                            <td>Fecha</td>
+                            <td>Hora</td>
+                        </tr>
+                    </thead>
+                    <tbody id="idTbodyTablaAdmin">
+
+                    </tbody>
+                </table>
+            </section>
         </article>
 
-        <article class="principal-turnos">         
+        <article class="principal-turnos" id="idCuerpoUsuario">         
             <article>
                 <section class="busquedaTurno">
                     <section>

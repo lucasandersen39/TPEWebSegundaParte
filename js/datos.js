@@ -1,5 +1,5 @@
 /*ARREGLO DE TURNOS CARGADOS EN SISTEMA */
-let listaDeTurnos = [
+/*let listaDeTurnos = [
     {
         "barbero": "Nicolas",
         "fecha": "2022-10-29",
@@ -990,4 +990,36 @@ let listaDeTurnos = [
             "telefono": 539313
         }
     },
+]*/
+
+let arregloTurnos = [{
+    "barbero": "Ernesto",
+    "fecha": "2022-10-29",
+    "hora": "12",
+    "cliente": {
+        "nombre": "Nombre1",
+        "apellido": "Apellido1",
+        "telefono": 462977
+    }
+},
+{
+    "barbero": "Nicolas",
+    "fecha": "2022-10-29",
+    "hora": "13",
+    "cliente": {
+        "nombre": "Nombre2",
+        "apellido": "Apellido2",
+        "telefono": 462977
+    }
+},
+{
+    "barbero": "Pedro",
+    "fecha": "2022-10-29",
+    "hora": "11",
+    "cliente": {
+        "nombre": "Nombre3",
+        "apellido": "Apellido3",
+        "telefono": 462977
+    }
+}
 ]

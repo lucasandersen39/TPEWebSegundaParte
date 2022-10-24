@@ -1,25 +1,76 @@
 document.addEventListener("DOMContentLoaded", function () {
     "uses strict";
-    
-    let botonMenu = document.querySelector("#idBtn-menu");
-    botonMenu.addEventListener("click", desplegarMenu);
-  
-      /* TURNOS ADMINISTRADOR */
-      let btnAdmin=document.querySelector("#button-admin");
-      let btnUsuario=document.querySelector("#button-usuario");
-  
-      btnAdmin.addEventListener("ckick",function(){
-          let articleUsuario=dpcument.querySelector(".principal-turnos");
-          articleUsuario.classList.toggle(".oculto");
-          let articleAdmin=document.querySelector(".pincipal-turnos-adm");
-          articleAdmin.classList.toggle(".oculto");
-      });
-      
+
     //asigno a listaBarberos la lista listaDeBarberos generada en datos.js
     //donde se encuentran cargados los turnos de cada barbero
-    let listaTurnos = [];
-    listaTurnos = listaDeTurnos;
+    let listaTurnos = [{
+        "barbero": "Ernesto",
+        "fecha": "2022-10-29",
+        "hora": "12",
+        "cliente": {
+            "nombre": "Nombre1",
+            "apellido": "Apellido1",
+            "telefono": 462977
+        }
+    },
+    {
+        "barbero": "Nicolas",
+        "fecha": "2022-10-29",
+        "hora": "13",
+        "cliente": {
+            "nombre": "Nombre2",
+            "apellido": "Apellido2",
+            "telefono": 462977
+        }
+    },
+    {
+        "barbero": "Pedro",
+        "fecha": "2022-10-29",
+        "hora": "11",
+        "cliente": {
+            "nombre": "Nombre3",
+            "apellido": "Apellido3",
+            "telefono": 462977
+        }
+    }
+    ];
+
+    let botonMenu = document.querySelector("#idBtn-menu");
+    botonMenu.addEventListener("click", desplegarMenu);
+
+    /* TURNOS ADMINISTRADOR */
+    let btnAdmin = document.querySelector("#button-admin");
+    let btnUsuario = document.querySelector("#button-usuario");
+    
     let barberos = ["Nicolas", "Ernesto", "Pedro"];
+
+    /*Setea la fecha del input date con la fecha de hoy 
+    y actualiza la tabla con los turnos del dia de la fecha */
+    let porFecha = document.querySelector("#idFechaTurno");
+    porFecha.value = fechaActual();
+    let fechaAdmin=document.querySelector("#idFechaTurnoAdmin");
+    fechaAdmin.value=fechaActual();
+    btnAdmin.addEventListener("click", function () {
+        let articleUsuario = document.querySelector("#idCuerpoUsuario");
+        articleUsuario.classList.add("oculto");
+        let articleAdmin = document.querySelector("#idCuerpoAdmin");
+        articleAdmin.classList.remove("oculto");
+        let bodyAdmin=document.querySelector("#idTbodyTablaAdmin");
+        limpiarTabla(bodyAdmin);
+        cargarTablaAdmin();
+    });
+    btnUsuario.addEventListener("click", function () {
+        let articleUsuario = document.querySelector("#idCuerpoUsuario");
+        articleUsuario.classList.remove("oculto");
+        let articleAdmin = document.querySelector("#idCuerpoAdmin");
+        articleAdmin.classList.add("oculto");
+        limpiarTHead();
+        armarTHead(barberos);
+        cargarTurnos(buscarPorFecha(listaTurnos, porFecha.value), barberos);
+    });
+
+    
+    
     /*Ordena el arreglo de turnos de forma ascendente */
     listaTurnos.sort(function (item1, item2) {
         if (item1.fecha > item2.fecha)
@@ -29,35 +80,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 return 1;
             else
                 return -1;
-        
+
         if (item1.fecha < item2.fecha)
             return -1;
         return 0;
     });
 
-    /*Setea la fecha del input date con la fecha de hoy 
-    y actualiza la tabla con los turnos del dia de la fecha */
+    limpiarTHead();
     armarTHead(barberos);
-    let porFecha = document.querySelector("#idFechaTurno");
-    porFecha.value = fechaActual();
     cargarTurnos(buscarPorFecha(listaTurnos, porFecha.value), barberos);
-
-    let inputFecha=document.querySelector("#idFechaTurno");
-    inputFecha.addEventListener("change",buscarTurnos);
-    let inputBarbero=document.querySelector("#idSelectBarbero");
-    inputBarbero.addEventListener("change",buscarTurnos);
+    let inputFecha = document.querySelector("#idFechaTurno");
+    inputFecha.addEventListener("change", buscarTurnos);
+    let inputBarbero = document.querySelector("#idSelectBarbero");
+    inputBarbero.addEventListener("change", buscarTurnos);
     /**
      * Busca todos los turnos que cumplan con las condiciones.
      * Primero filtra el arreglo de turnos de acuerdo a la fecha seleccionada,
      * Luego filtra el resultado del fultrado anterior por los barberos seleccionados en el input barbero
      * arma el THead de la tabla y carga los elementos que hayan cumplido con las 2 anteriores condiciones
      */
-    function buscarTurnos(){
+    function buscarTurnos() {
         let selBarbero = document.querySelector("#idSelectBarbero");
         let arrAux;
         let listBarberos = [...barberos];
         arrAux = buscarPorFecha(listaTurnos, porFecha.value);
-        
+
         if (selBarbero.value != "vacio") {
             arrAux = buscarPorBarbero(arrAux, selBarbero.value);
             listBarberos = [];
@@ -65,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         limpiarTHead();
         armarTHead(listBarberos);
-        console.log("Tamaño de arrAux "+arrAux.length);
+        console.log("Tamaño de arrAux " + arrAux.length);
         cargarTurnos(arrAux, listBarberos);
     }
 
@@ -110,17 +157,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function cargarTurnos(turnos, listaBarberos) {
-        limpiarTabla();
         let bodyTable = document.querySelector("#idTbodyTabla");
+        limpiarTabla(bodyTable);
         for (let hora = 10; hora <= 18; hora++) {
             let fila = document.createElement("tr");
-            fila.appendChild(crearColumna(hora+"hs"));
+            fila.appendChild(crearColumna(hora + "hs"));
             bodyTable.appendChild(fila);
             for (let i = 0; i < listaBarberos.length; i++) {
                 if (estaDisponible(listaBarberos[i], hora, turnos))
                     fila.appendChild(crearColumna("Disponible", "celdaDisponible", hora, listaBarberos[i]));
                 else
-                    fila.appendChild(crearColumna("Reservado", "celdaReservada", hora , listaBarberos[i]));
+                    fila.appendChild(crearColumna("Reservado", "celdaReservada", hora, listaBarberos[i]));
                 bodyTable.appendChild(fila);
             }
         }
@@ -175,8 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /**
      * Elimina todos los nodos de la tabla
      */
-    function limpiarTabla() {
-        let bodyT = document.querySelector("#idTbodyTabla");
+    function limpiarTabla(bodyT) {
         while (bodyT.firstChild)
             bodyT.removeChild(bodyT.firstChild);
     }
@@ -217,13 +263,102 @@ document.addEventListener("DOMContentLoaded", function () {
         return arregloAux;
     }
 
-    
+    /*TURNOS ADMINISTRADOR */
+    let formAdmin=document.querySelector("#idFormularioAdmin");
+    formAdmin.addEventListener("submit",agregarTurnoAdmin);
+
+    function agregarTurnoAdmin(event){
+        event.preventDefault();
+        let adminData=new FormData(formAdmin);
+        let turno = {
+            "barbero": adminData.get("barbero"),
+            "fecha": adminData.get("fecha"),
+            "hora": adminData.get("Hora"),
+            "cliente": {
+                "nombre": adminData.get("nombre"),
+                "apellido": adminData.get("apellido"),
+                "telefono": adminData.get("numero"),
+            }
+        };
+        listaTurnos.push(turno);
+        let bodyAdmin=document.querySelector("#idTbodyTablaAdmin");
+        limpiarTabla(bodyAdmin);
+        cargarTablaAdmin();
+    }
+
+    let botonAgregarAzar=document.querySelector("#idBotonAzar");
+    botonAgregarAzar.addEventListener("click",function(){
+        let t1 = {
+            "barbero": "Nicolas",
+            "fecha": fechaActual(),
+            "hora": "12",
+            "cliente": {
+                "nombre": "Roberto",
+                "apellido": "Vitale",
+                "telefono": 484555
+            }
+        };
+        let t2 = {
+            "barbero": "Ernesto",
+            "fecha": fechaActual(),
+            "hora": "13",
+            "cliente": {
+                "nombre": "Carlos",
+                "apellido": "Capote",
+                "telefono": 635455
+            }
+        };
+        let t3 = {
+            "barbero": "Pedro",
+            "fecha": fechaActual(),
+            "hora": "15",
+            "cliente": {
+                "nombre": "Norberto",
+                "apellido": "Steffen",
+                "telefono": 438788
+            }
+        };
+        listaTurnos.push(t1);
+        listaTurnos.push(t2);
+        listaTurnos.push(t3);
+  
+        let bodyAdmin=document.querySelector("#idTbodyTablaAdmin");
+        limpiarTabla(bodyAdmin);
+        cargarTablaAdmin();
+    });
+
+    document.querySelector("#idBotonLimpiarAdmin").addEventListener("click",function(){
+        let bodyAdmin=document.querySelector("#idTbodyTablaAdmin");
+        limpiarTabla(bodyAdmin);
+    });
+    function cargarTablaAdmin(){
+        for (let i=0;i<listaTurnos.length;i++)
+            agregarFilaAdmin(listaTurnos[i]);
+    }
+
+    function agregarFilaAdmin(turno){
+        let bodyAdmin=document.querySelector("#idTbodyTablaAdmin");
+        let fila=document.createElement("tr");
+        fila.appendChild(crearColumnaAdmin(turno.cliente.nombre));
+        fila.appendChild(crearColumnaAdmin(turno.cliente.apellido));
+        fila.appendChild(crearColumnaAdmin(turno.cliente.telefono));
+        fila.appendChild(crearColumnaAdmin(turno.barbero));
+        fila.appendChild(crearColumnaAdmin(armarFecha(turno.fecha)));
+        fila.appendChild(crearColumnaAdmin(turno.hora));
+        bodyAdmin.appendChild(fila);
+    }
+
+    function crearColumnaAdmin(dato){
+        let col=document.createElement("td");
+        col.textContent=dato;
+        return col;
+    }
 
     /*CAPTCHA */
 
     let formulario = document.querySelector("#idFormulario");
     let fecha = document.querySelector("#idFechaTurno");
-    let botonExpress=document.querySelector("#idBotonExpress");
+    let botonExpress = document.querySelector("#idBotonExpress");
     //La funcion Math.random me genera un numero random entre 0 y 1 sin incluir el 1
     //Le sumamos 1 para incluir el numero max entre los posibles resultados al aplicarle el floor
     function numeroAleatorio(min, max) {
@@ -280,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let elementoLista3 = document.createElement("li");
         elementoLista3.classList.add("elementoListaReserva");
-        let info3 = document.createTextNode("Fecha: " + nuevoTurno.fecha + "/  Hora: " + nuevoTurno.hora+"hs");
+        let info3 = document.createTextNode("Fecha: " + nuevoTurno.fecha + "/  Hora: " + nuevoTurno.hora + "hs");
         elementoLista3.appendChild(info3);
         lista.appendChild(elementoLista3);
 
@@ -299,7 +434,7 @@ document.addEventListener("DOMContentLoaded", function () {
         divInfoTurno.classList.add("divInfoTurno");
     }
 
-    function borrarInfoTurno(){
+    function borrarInfoTurno() {
         let divInfoTurno = document.querySelector("#infoConfirmaTurno");
         while (divInfoTurno.firstChild)
             divInfoTurno.removeChild(divInfoTurno.firstChild);
@@ -311,12 +446,12 @@ document.addEventListener("DOMContentLoaded", function () {
         divInfoTurno.classList.add("divInfoTurno");
         divInfoTurno.innerHTML = "Captcha Incorrecto";
     }
-    
-    function cerrarForm(){
-        document.querySelector("#idInputNombre").value="";
-        document.querySelector("#idInputApellido").value="";
-        document.querySelector("#idNumeroTelefono").value="";
-        document.querySelector("#idInputIngresaCaptcha").value="";
+
+    function cerrarForm() {
+        document.querySelector("#idInputNombre").value = "";
+        document.querySelector("#idInputApellido").value = "";
+        document.querySelector("#idNumeroTelefono").value = "";
+        document.querySelector("#idInputIngresaCaptcha").value = "";
         generarCaptcha();
         let formulario = document.querySelector("#idFormulario");
         formulario.classList.remove("desplegar");
@@ -343,7 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let nCli = document.querySelector("#idInputNombre").value;
         let apCli = document.querySelector("#idInputApellido").value;
         let tCli = parseInt(document.querySelector("#idNumeroTelefono").value);
-        let nuevoTurno=crearTurnoJson(bar, fe, hor, nCli, apCli, tCli);
+        let nuevoTurno = crearTurnoJson(bar, fe, hor, nCli, apCli, tCli);
         listaTurnos.push(nuevoTurno);
         cargarTurnos(buscarPorFecha(listaTurnos, porFecha.value), barberos);
         mostrarResumenTurno(nuevoTurno);
@@ -359,7 +494,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let inputIngresaCaptcha = document.querySelector("#idInputIngresaCaptcha");
 
         evento.preventDefault();
-        if (textoCaptcha.textContent == inputIngresaCaptcha.value) {         
+        if (textoCaptcha.textContent == inputIngresaCaptcha.value) {
             agendarTurno();
         }
         else {
@@ -371,5 +506,5 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("load", generarCaptcha);
     //Capta el evento que lanza el boton de enviar formulario
     formulario.addEventListener("submit", validarFormulario);
-    botonExpress.addEventListener("click",agendarTurnoExpress);
+
 });
