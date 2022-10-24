@@ -444,6 +444,36 @@ tbody tr .celdaDisponible:hover {
 .sectionFormularioAdmin div{
     margin: 10px 0px;
 }
+.registroTurno{
+    padding: 5px 5px;
+    margin: 0px 5px;
+}
+
+.tablaAdmin{
+    margin: 15px 0 ;
+}
+
+#idTheadTablaAdmin td{
+    color: #fff;
+    padding: 2px 3px;
+    font-weight: bold;
+    background-color: black;
+}
+
+#idTbodyTablaAdmin td{
+    padding: 5px 0px;
+}
+
+.botones-tablas{
+    margin: 10px 5px;
+}
+.botones-tablas button{
+    padding: 5px 5px;
+}
+
+#idFechaTurnoAdmin{
+    font-family: "Merriweather", sans-serif;
+}
 
 
 
@@ -634,4 +664,3 @@ li.elementoListaReserva:hover{
 /*FIN TURNOS*/
 }
 
-/*FIN CSS*/
